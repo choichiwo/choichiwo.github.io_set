@@ -1,0 +1,1585 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>home_credit_default_risk - Report</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Report"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Report"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Kaggle API 설치 Google Colab에서 Kaggle API를 불러오려면 다음 소스코드를 실행한다.  1!pip install kaggle  Requirement already satisfied: kaggle in &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;lib&amp;#x2F;python3.6&amp;#x2F;dist-packages (1.5.9) Requirement already satisfi"><meta property="og:type" content="blog"><meta property="og:title" content="home_credit_default_risk"><meta property="og:url" content="https://choichiwo.github.io/2020/11/05/home_credit_default_risk/"><meta property="og:site_name" content="Report"><meta property="og:description" content="Kaggle API 설치 Google Colab에서 Kaggle API를 불러오려면 다음 소스코드를 실행한다.  1!pip install kaggle  Requirement already satisfied: kaggle in &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;lib&amp;#x2F;python3.6&amp;#x2F;dist-packages (1.5.9) Requirement already satisfi"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://choichiwo.github.io/images/home_credit_default_risk/output_24_0.png"><meta property="og:image" content="https://choichiwo.github.io/images/home_credit_default_risk/output_46_0.png"><meta property="og:image" content="https://choichiwo.github.io/images/home_credit_default_risk/output_50_0.png"><meta property="og:image" content="https://choichiwo.github.io/images/home_credit_default_risk/output_59_0.png"><meta property="og:image" content="https://choichiwo.github.io/images/home_credit_default_risk/output_61_0.png"><meta property="article:published_time" content="2020-11-05T05:16:07.477Z"><meta property="article:modified_time" content="2020-11-05T05:28:08.094Z"><meta property="article:author" content="choi"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/home_credit_default_risk/output_24_0.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://choichiwo.github.io/2020/11/05/home_credit_default_risk/"},"headline":"Report","image":["https://choichiwo.github.io/images/home_credit_default_risk/output_24_0.png","https://choichiwo.github.io/images/home_credit_default_risk/output_46_0.png","https://choichiwo.github.io/images/home_credit_default_risk/output_50_0.png","https://choichiwo.github.io/images/home_credit_default_risk/output_59_0.png","https://choichiwo.github.io/images/home_credit_default_risk/output_61_0.png"],"datePublished":"2020-11-05T05:16:07.477Z","dateModified":"2020-11-05T05:28:08.094Z","author":{"@type":"Person","name":"choi"},"description":"Kaggle API 설치 Google Colab에서 Kaggle API를 불러오려면 다음 소스코드를 실행한다.  1!pip install kaggle  Requirement already satisfied: kaggle in &#x2F;usr&#x2F;local&#x2F;lib&#x2F;python3.6&#x2F;dist-packages (1.5.9) Requirement already satisfi"}</script><link rel="canonical" href="https://choichiwo.github.io/2020/11/05/home_credit_default_risk/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Report" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-11-05T05:16:07.477Z" title="2020-11-05T05:16:07.477Z">2020-11-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2020-11-05T05:28:08.094Z" title="2020-11-05T05:28:08.094Z">2020-11-05</time></span><span class="level-item">an hour read (About 6949 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">home_credit_default_risk</h1><div class="content"><h1 id="Kaggle-API-설치"><a href="#Kaggle-API-설치" class="headerlink" title="Kaggle API 설치"></a>Kaggle API 설치</h1><ul>
+<li>Google Colab에서 Kaggle API를 불러오려면 다음 소스코드를 실행한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install kaggle</span><br></pre></td></tr></table></figure>
+
+<pre><code>Requirement already satisfied: kaggle in /usr/local/lib/python3.6/dist-packages (1.5.9)
+Requirement already satisfied: requests in /usr/local/lib/python3.6/dist-packages (from kaggle) (2.23.0)
+Requirement already satisfied: slugify in /usr/local/lib/python3.6/dist-packages (from kaggle) (0.0.1)
+Requirement already satisfied: urllib3 in /usr/local/lib/python3.6/dist-packages (from kaggle) (1.24.3)
+Requirement already satisfied: tqdm in /usr/local/lib/python3.6/dist-packages (from kaggle) (4.41.1)
+Requirement already satisfied: python-slugify in /usr/local/lib/python3.6/dist-packages (from kaggle) (4.0.1)
+Requirement already satisfied: six&gt;=1.10 in /usr/local/lib/python3.6/dist-packages (from kaggle) (1.15.0)
+Requirement already satisfied: certifi in /usr/local/lib/python3.6/dist-packages (from kaggle) (2020.6.20)
+Requirement already satisfied: python-dateutil in /usr/local/lib/python3.6/dist-packages (from kaggle) (2.8.1)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.6/dist-packages (from requests-&gt;kaggle) (2.10)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.6/dist-packages (from requests-&gt;kaggle) (3.0.4)
+Requirement already satisfied: text-unidecode&gt;=1.3 in /usr/local/lib/python3.6/dist-packages (from python-slugify-&gt;kaggle) (1.3)</code></pre>
+<h2 id="1-Kaggle-Token-다운로드"><a href="#1-Kaggle-Token-다운로드" class="headerlink" title="1. Kaggle Token 다운로드"></a>1. Kaggle Token 다운로드</h2><ul>
+<li>Kaggle에서 <code>API Token</code>을 다운로드 받는다. </li>
+<li>[Kaggle]-[My Account]-[API]-[Create New API Token]을 누르면 kaggle.json 파일이 다운로드 된다. </li>
+<li>이 파일을 바탕화면에 옮긴 뒤, 아래 코드(토큰을 실행시키는 코드)를 실행 시킨다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line">uploaded = files.upload()</span><br><span class="line"><span class="keyword">for</span> fn <span class="keyword">in</span> uploaded.keys():</span><br><span class="line">  print(<span class="string">&#x27;uploaded file &quot;&#123;name&#125;&quot; with length &#123;length&#125; bytes&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">      name=fn, length=<span class="built_in">len</span>(uploaded[fn])))</span><br><span class="line">  </span><br><span class="line"><span class="comment"># kaggle.json을 아래 폴더로 옮긴 뒤, file을 사용할 수 있도록 권한을 부여한다. </span></span><br><span class="line">!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod <span class="number">600</span> ~/.kaggle/kaggle.json</span><br></pre></td></tr></table></figure>
+
+
+
+<p><input type="file" id="files-6d88dc91-54e2-468b-be7e-dc5aa0fecab8" name="files[]" multiple disabled
+   style="border:none" /><br><output id="result-6d88dc91-54e2-468b-be7e-dc5aa0fecab8"><br> Upload widget is only available when the cell has been executed in the<br> current browser session. Please rerun this cell to enable.<br> </output><br> <script src="/nbextensions/google.colab/files.js"></script> </p>
+<pre><code>Saving kaggle.json to kaggle.json
+uploaded file &quot;kaggle.json&quot; with length 66 bytes</code></pre>
+<ul>
+<li>아래 코드는 실행됬는지 확인하는 코드</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="number">-1</span>ha ~/.kaggle/kaggle.json</span><br></pre></td></tr></table></figure>
+
+<pre><code>/root/.kaggle/kaggle.json</code></pre>
+<h2 id="2-Kaggle-데이터-불러오기"><a href="#2-Kaggle-데이터-불러오기" class="headerlink" title="2. Kaggle 데이터 불러오기"></a>2. Kaggle 데이터 불러오기</h2><ul>
+<li>먼저 kaggle competition list를 불러온다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!kaggle competitions <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Warning: Looks like you&#39;re using an outdated API Version, please consider updating (server 1.5.9 / client 1.5.4)
+ref                                            deadline             category            reward  teamCount  userHasEntered  
+---------------------------------------------  -------------------  ---------------  ---------  ---------  --------------  
+contradictory-my-dear-watson                   2030-07-01 23:59:00  Getting Started     Prizes        134           False  
+gan-getting-started                            2030-07-01 23:59:00  Getting Started     Prizes        161           False  
+tpu-getting-started                            2030-06-03 23:59:00  Getting Started  Knowledge        292           False  
+digit-recognizer                               2030-01-01 00:00:00  Getting Started  Knowledge       2248           False  
+titanic                                        2030-01-01 00:00:00  Getting Started  Knowledge      17260            True  
+house-prices-advanced-regression-techniques    2030-01-01 00:00:00  Getting Started  Knowledge       4325            True  
+connectx                                       2030-01-01 00:00:00  Getting Started  Knowledge        366           False  
+nlp-getting-started                            2030-01-01 00:00:00  Getting Started  Knowledge       1130           False  
+rock-paper-scissors                            2021-02-01 23:59:00  Playground          Prizes        226           False  
+riiid-test-answer-prediction                   2021-01-07 23:59:00  Featured          $100,000       1491           False  
+nfl-big-data-bowl-2021                         2021-01-05 23:59:00  Analytics         $100,000          0           False  
+competitive-data-science-predict-future-sales  2020-12-31 23:59:00  Playground           Kudos       9392           False  
+halite-iv-playground-edition                   2020-12-31 23:59:00  Playground       Knowledge         44           False  
+predict-volcanic-eruptions-ingv-oe             2020-12-28 23:59:00  Playground            Swag        198           False  
+hashcode-drone-delivery                        2020-12-14 23:59:00  Playground       Knowledge         80           False  
+cdp-unlocking-climate-solutions                2020-12-02 23:59:00  Analytics          $91,000          0           False  
+lish-moa                                       2020-11-30 23:59:00  Research           $30,000       3454           False  
+google-football                                2020-11-30 23:59:00  Featured            $6,000        925           False  
+conways-reverse-game-of-life-2020              2020-11-30 23:59:00  Playground            Swag        132           False  
+lyft-motion-prediction-autonomous-vehicles     2020-11-25 23:59:00  Featured           $30,000        788           False  </code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!kaggle competitions download -c home-credit-default-risk</span><br></pre></td></tr></table></figure>
+
+<pre><code>Warning: Looks like you&#39;re using an outdated API Version, please consider updating (server 1.5.9 / client 1.5.4)
+installments_payments.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+previous_application.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+application_test.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+bureau.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+sample_submission.csv: Skipping, found more recently modified local copy (use --force to force download)
+POS_CASH_balance.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+credit_card_balance.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+HomeCredit_columns_description.csv: Skipping, found more recently modified local copy (use --force to force download)
+application_train.csv.zip: Skipping, found more recently modified local copy (use --force to force download)
+bureau_balance.csv.zip: Skipping, found more recently modified local copy (use --force to force download)</code></pre>
+<ul>
+<li>ls는 디렉터리(파일,경로) 내의 데이터 파일을 보여주는 명령어</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!ls</span><br></pre></td></tr></table></figure>
+
+<pre><code>application_test.csv.zip        installments_payments.csv.zip
+application_train.csv.zip        POS_CASH_balance.csv.zip
+bureau_balance.csv.zip            previous_application.csv.zip
+bureau.csv.zip                sample_data
+credit_card_balance.csv.zip        sample_submission.csv
+gender_submission.csv            test.csv
+HomeCredit_columns_description.csv  train.csv</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">! unzip application_test.csv.<span class="built_in">zip</span>	  </span><br><span class="line">! unzipinstallments_payments.csv.<span class="built_in">zip</span></span><br><span class="line">! unzip application_train.csv.<span class="built_in">zip</span>	    </span><br><span class="line">! unzip POS_CASH_balance.csv.<span class="built_in">zip</span></span><br><span class="line">! unzip bureau_balance.csv.<span class="built_in">zip</span>		    </span><br><span class="line">! unzip previous_application.csv.<span class="built_in">zip</span></span><br><span class="line">! unzip bureau.csv.<span class="built_in">zip</span>			    </span><br><span class="line">! unzip credit_card_balance.csv.<span class="built_in">zip</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Archive:  application_test.csv.zip
+  inflating: application_test.csv    
+/bin/bash: unzipinstallments_payments.csv.zip: command not found
+Archive:  application_train.csv.zip
+replace application_train.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: application_train.csv   
+Archive:  POS_CASH_balance.csv.zip
+replace POS_CASH_balance.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: POS_CASH_balance.csv    
+Archive:  bureau_balance.csv.zip
+replace bureau_balance.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: bureau_balance.csv      
+Archive:  previous_application.csv.zip
+replace previous_application.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: previous_application.csv  
+Archive:  bureau.csv.zip
+replace bureau.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: bureau.csv              
+Archive:  credit_card_balance.csv.zip
+replace credit_card_balance.csv? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: credit_card_balance.csv  </code></pre>
+<ul>
+<li>현재 총 14개의 데이터를 다운로드 받았다. <ul>
+<li>application_test.csv.zip      </li>
+<li>installments_payments.csv.zip</li>
+<li>application_train.csv.zip        </li>
+<li>POS_CASH_balance.csv.zip</li>
+<li>bureau_balance.csv.zip            </li>
+<li>previous_application.csv.zip</li>
+<li>bureau.csv.zip                </li>
+<li>sample_data</li>
+<li>credit_card_balance.csv.zip         </li>
+<li>sample_submission.csv</li>
+<li>gender_submission.csv            </li>
+<li>test.csv</li>
+<li>HomeCredit_columns_description.csv  </li>
+<li>train.csv</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-캐글-데이터-수집-및-EDA"><a href="#3-캐글-데이터-수집-및-EDA" class="headerlink" title="3. 캐글 데이터 수집 및 EDA"></a>3. 캐글 데이터 수집 및 EDA</h2><ul>
+<li>우선 데이터를 수집하기에 앞서서 <code>EDA</code>에 관한 필수 패키지를 설치하자. </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터 조작을 위한 numpy와 팬더</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  </span><br><span class="line"><span class="comment"># 범주형 변수를 처리하기 위한 사전 처리 학습</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line"><span class="comment"># 파일 시스템 매니지먼트</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 경고 억제</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment"># 플롯을 위한 matplotlib 및 seaorn</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+
+<h2 id="분류"><a href="#분류" class="headerlink" title="분류"></a>분류</h2><ul>
+<li>감독됨: 라벨은 교육 데이터에 포함되며, 목적은 형상으로부터 라벨을 예측하는 방법을 학습하는 모델을 훈련시키는 것이다.</li>
+<li>분류: 라벨은 0(대출금을 제때 상환할 수 있음), 1(대출금 상환에 어려움이 있음)의 이진 변수다.</li>
+<li>데이터 : 은행을 이용하지 않은 사람들에게 신용대출(대출)을 제공하는 서비스인 홈 크레딧에 의해 제공된다</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 사용 가능한 파일 나열</span></span><br><span class="line">print(os.listdir())</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;.config&#39;, &#39;previous_application.csv&#39;, &#39;application_train.csv&#39;, &#39;bureau_balance.csv&#39;, &#39;application_test.csv.zip&#39;, &#39;bureau.csv&#39;, &#39;POS_CASH_balance.csv&#39;, &#39;previous_application.csv.zip&#39;, &#39;bureau_balance.csv.zip&#39;, &#39;POS_CASH_balance.csv.zip&#39;, &#39;HomeCredit_columns_description.csv&#39;, &#39;bureau.csv.zip&#39;, &#39;installments_payments.csv.zip&#39;, &#39;test.csv&#39;, &#39;sample_submission.csv&#39;, &#39;application_train.csv.zip&#39;, &#39;gender_submission.csv&#39;, &#39;credit_card_balance.csv&#39;, &#39;credit_card_balance.csv.zip&#39;, &#39;train.csv&#39;, &#39;sample_data&#39;]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 교육자료</span></span><br><span class="line">app_train = pd.read_csv(<span class="string">&#x27;application_train.csv&#x27;</span>)</span><br><span class="line">print(<span class="string">&#x27;Training data shape: &#x27;</span>, app_train.shape)</span><br><span class="line">app_train.head()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Training data shape:  (307511, 122)</code></pre>
+<div style = overflow:scroll;>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SK_ID_CURR</th>
+      <th>TARGET</th>
+      <th>NAME_CONTRACT_TYPE</th>
+      <th>CODE_GENDER</th>
+      <th>FLAG_OWN_CAR</th>
+      <th>FLAG_OWN_REALTY</th>
+      <th>CNT_CHILDREN</th>
+      <th>AMT_INCOME_TOTAL</th>
+      <th>AMT_CREDIT</th>
+      <th>AMT_ANNUITY</th>
+      <th>AMT_GOODS_PRICE</th>
+      <th>NAME_TYPE_SUITE</th>
+      <th>NAME_INCOME_TYPE</th>
+      <th>NAME_EDUCATION_TYPE</th>
+      <th>NAME_FAMILY_STATUS</th>
+      <th>NAME_HOUSING_TYPE</th>
+      <th>REGION_POPULATION_RELATIVE</th>
+      <th>DAYS_BIRTH</th>
+      <th>DAYS_EMPLOYED</th>
+      <th>DAYS_REGISTRATION</th>
+      <th>DAYS_ID_PUBLISH</th>
+      <th>OWN_CAR_AGE</th>
+      <th>FLAG_MOBIL</th>
+      <th>FLAG_EMP_PHONE</th>
+      <th>FLAG_WORK_PHONE</th>
+      <th>FLAG_CONT_MOBILE</th>
+      <th>FLAG_PHONE</th>
+      <th>FLAG_EMAIL</th>
+      <th>OCCUPATION_TYPE</th>
+      <th>CNT_FAM_MEMBERS</th>
+      <th>REGION_RATING_CLIENT</th>
+      <th>REGION_RATING_CLIENT_W_CITY</th>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <th>REG_REGION_NOT_LIVE_REGION</th>
+      <th>REG_REGION_NOT_WORK_REGION</th>
+      <th>LIVE_REGION_NOT_WORK_REGION</th>
+      <th>REG_CITY_NOT_LIVE_CITY</th>
+      <th>REG_CITY_NOT_WORK_CITY</th>
+      <th>LIVE_CITY_NOT_WORK_CITY</th>
+      <th>...</th>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <th>LIVINGAREA_MEDI</th>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <th>NONLIVINGAREA_MEDI</th>
+      <th>FONDKAPREMONT_MODE</th>
+      <th>HOUSETYPE_MODE</th>
+      <th>TOTALAREA_MODE</th>
+      <th>WALLSMATERIAL_MODE</th>
+      <th>EMERGENCYSTATE_MODE</th>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <th>DEF_30_CNT_SOCIAL_CIRCLE</th>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+      <th>DEF_60_CNT_SOCIAL_CIRCLE</th>
+      <th>DAYS_LAST_PHONE_CHANGE</th>
+      <th>FLAG_DOCUMENT_2</th>
+      <th>FLAG_DOCUMENT_3</th>
+      <th>FLAG_DOCUMENT_4</th>
+      <th>FLAG_DOCUMENT_5</th>
+      <th>FLAG_DOCUMENT_6</th>
+      <th>FLAG_DOCUMENT_7</th>
+      <th>FLAG_DOCUMENT_8</th>
+      <th>FLAG_DOCUMENT_9</th>
+      <th>FLAG_DOCUMENT_10</th>
+      <th>FLAG_DOCUMENT_11</th>
+      <th>FLAG_DOCUMENT_12</th>
+      <th>FLAG_DOCUMENT_13</th>
+      <th>FLAG_DOCUMENT_14</th>
+      <th>FLAG_DOCUMENT_15</th>
+      <th>FLAG_DOCUMENT_16</th>
+      <th>FLAG_DOCUMENT_17</th>
+      <th>FLAG_DOCUMENT_18</th>
+      <th>FLAG_DOCUMENT_19</th>
+      <th>FLAG_DOCUMENT_20</th>
+      <th>FLAG_DOCUMENT_21</th>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100002</td>
+      <td>1</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>202500.0</td>
+      <td>406597.5</td>
+      <td>24700.5</td>
+      <td>351000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Single / not married</td>
+      <td>House / apartment</td>
+      <td>0.018801</td>
+      <td>-9461</td>
+      <td>-637</td>
+      <td>-3648.0</td>
+      <td>-2120</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Laborers</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>WEDNESDAY</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0.0205</td>
+      <td>0.0193</td>
+      <td>0.0000</td>
+      <td>0.00</td>
+      <td>reg oper account</td>
+      <td>block of flats</td>
+      <td>0.0149</td>
+      <td>Stone, brick</td>
+      <td>No</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>-1134.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100003</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>N</td>
+      <td>0</td>
+      <td>270000.0</td>
+      <td>1293502.5</td>
+      <td>35698.5</td>
+      <td>1129500.0</td>
+      <td>Family</td>
+      <td>State servant</td>
+      <td>Higher education</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.003541</td>
+      <td>-16765</td>
+      <td>-1188</td>
+      <td>-1186.0</td>
+      <td>-291</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Core staff</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>MONDAY</td>
+      <td>11</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0.0787</td>
+      <td>0.0558</td>
+      <td>0.0039</td>
+      <td>0.01</td>
+      <td>reg oper account</td>
+      <td>block of flats</td>
+      <td>0.0714</td>
+      <td>Block</td>
+      <td>No</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>-828.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100004</td>
+      <td>0</td>
+      <td>Revolving loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>67500.0</td>
+      <td>135000.0</td>
+      <td>6750.0</td>
+      <td>135000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Single / not married</td>
+      <td>House / apartment</td>
+      <td>0.010032</td>
+      <td>-19046</td>
+      <td>-225</td>
+      <td>-4260.0</td>
+      <td>-2531</td>
+      <td>26.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Laborers</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>MONDAY</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-815.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100006</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>135000.0</td>
+      <td>312682.5</td>
+      <td>29686.5</td>
+      <td>297000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Civil marriage</td>
+      <td>House / apartment</td>
+      <td>0.008019</td>
+      <td>-19005</td>
+      <td>-3039</td>
+      <td>-9833.0</td>
+      <td>-2437</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Laborers</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>WEDNESDAY</td>
+      <td>17</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>-617.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100007</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>121500.0</td>
+      <td>513000.0</td>
+      <td>21865.5</td>
+      <td>513000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Single / not married</td>
+      <td>House / apartment</td>
+      <td>0.028663</td>
+      <td>-19932</td>
+      <td>-3038</td>
+      <td>-4311.0</td>
+      <td>-3458</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Core staff</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>THURSDAY</td>
+      <td>11</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1106.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 122 columns</p>
+</div>
+
+
+
+<p>교육 데이터에는 307511개의 관측치(각각 별도 대출)와 대상(우리가 예측하고자 하는 라벨)을 포함한 122개의 특징(변수)이 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터 기능 테스트</span></span><br><span class="line">app_test = pd.read_csv(<span class="string">&#x27;application_test.csv&#x27;</span>)</span><br><span class="line">print(<span class="string">&#x27;Testing data shape: &#x27;</span>, app_test.shape)</span><br><span class="line">app_test.head()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Testing data shape:  (48744, 121)</code></pre>
+<div style = overflow:scroll;>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SK_ID_CURR</th>
+      <th>NAME_CONTRACT_TYPE</th>
+      <th>CODE_GENDER</th>
+      <th>FLAG_OWN_CAR</th>
+      <th>FLAG_OWN_REALTY</th>
+      <th>CNT_CHILDREN</th>
+      <th>AMT_INCOME_TOTAL</th>
+      <th>AMT_CREDIT</th>
+      <th>AMT_ANNUITY</th>
+      <th>AMT_GOODS_PRICE</th>
+      <th>NAME_TYPE_SUITE</th>
+      <th>NAME_INCOME_TYPE</th>
+      <th>NAME_EDUCATION_TYPE</th>
+      <th>NAME_FAMILY_STATUS</th>
+      <th>NAME_HOUSING_TYPE</th>
+      <th>REGION_POPULATION_RELATIVE</th>
+      <th>DAYS_BIRTH</th>
+      <th>DAYS_EMPLOYED</th>
+      <th>DAYS_REGISTRATION</th>
+      <th>DAYS_ID_PUBLISH</th>
+      <th>OWN_CAR_AGE</th>
+      <th>FLAG_MOBIL</th>
+      <th>FLAG_EMP_PHONE</th>
+      <th>FLAG_WORK_PHONE</th>
+      <th>FLAG_CONT_MOBILE</th>
+      <th>FLAG_PHONE</th>
+      <th>FLAG_EMAIL</th>
+      <th>OCCUPATION_TYPE</th>
+      <th>CNT_FAM_MEMBERS</th>
+      <th>REGION_RATING_CLIENT</th>
+      <th>REGION_RATING_CLIENT_W_CITY</th>
+      <th>WEEKDAY_APPR_PROCESS_START</th>
+      <th>HOUR_APPR_PROCESS_START</th>
+      <th>REG_REGION_NOT_LIVE_REGION</th>
+      <th>REG_REGION_NOT_WORK_REGION</th>
+      <th>LIVE_REGION_NOT_WORK_REGION</th>
+      <th>REG_CITY_NOT_LIVE_CITY</th>
+      <th>REG_CITY_NOT_WORK_CITY</th>
+      <th>LIVE_CITY_NOT_WORK_CITY</th>
+      <th>ORGANIZATION_TYPE</th>
+      <th>...</th>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <th>LIVINGAREA_MEDI</th>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <th>NONLIVINGAREA_MEDI</th>
+      <th>FONDKAPREMONT_MODE</th>
+      <th>HOUSETYPE_MODE</th>
+      <th>TOTALAREA_MODE</th>
+      <th>WALLSMATERIAL_MODE</th>
+      <th>EMERGENCYSTATE_MODE</th>
+      <th>OBS_30_CNT_SOCIAL_CIRCLE</th>
+      <th>DEF_30_CNT_SOCIAL_CIRCLE</th>
+      <th>OBS_60_CNT_SOCIAL_CIRCLE</th>
+      <th>DEF_60_CNT_SOCIAL_CIRCLE</th>
+      <th>DAYS_LAST_PHONE_CHANGE</th>
+      <th>FLAG_DOCUMENT_2</th>
+      <th>FLAG_DOCUMENT_3</th>
+      <th>FLAG_DOCUMENT_4</th>
+      <th>FLAG_DOCUMENT_5</th>
+      <th>FLAG_DOCUMENT_6</th>
+      <th>FLAG_DOCUMENT_7</th>
+      <th>FLAG_DOCUMENT_8</th>
+      <th>FLAG_DOCUMENT_9</th>
+      <th>FLAG_DOCUMENT_10</th>
+      <th>FLAG_DOCUMENT_11</th>
+      <th>FLAG_DOCUMENT_12</th>
+      <th>FLAG_DOCUMENT_13</th>
+      <th>FLAG_DOCUMENT_14</th>
+      <th>FLAG_DOCUMENT_15</th>
+      <th>FLAG_DOCUMENT_16</th>
+      <th>FLAG_DOCUMENT_17</th>
+      <th>FLAG_DOCUMENT_18</th>
+      <th>FLAG_DOCUMENT_19</th>
+      <th>FLAG_DOCUMENT_20</th>
+      <th>FLAG_DOCUMENT_21</th>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100001</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>135000.0</td>
+      <td>568800.0</td>
+      <td>20560.5</td>
+      <td>450000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Higher education</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.018850</td>
+      <td>-19241</td>
+      <td>-2329</td>
+      <td>-5170.0</td>
+      <td>-812</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>TUESDAY</td>
+      <td>18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Kindergarten</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.0514</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>block of flats</td>
+      <td>0.0392</td>
+      <td>Stone, brick</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1740.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100005</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>99000.0</td>
+      <td>222768.0</td>
+      <td>17370.0</td>
+      <td>180000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.035792</td>
+      <td>-18064</td>
+      <td>-4469</td>
+      <td>-9118.0</td>
+      <td>-1623</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Low-skill Laborers</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>FRIDAY</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Self-employed</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100013</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>202500.0</td>
+      <td>663264.0</td>
+      <td>69777.0</td>
+      <td>630000.0</td>
+      <td>NaN</td>
+      <td>Working</td>
+      <td>Higher education</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.019101</td>
+      <td>-20038</td>
+      <td>-4458</td>
+      <td>-2175.0</td>
+      <td>-3503</td>
+      <td>5.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Drivers</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>MONDAY</td>
+      <td>14</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Transport: type 3</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-856.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100028</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>2</td>
+      <td>315000.0</td>
+      <td>1575000.0</td>
+      <td>49018.5</td>
+      <td>1575000.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.026392</td>
+      <td>-13976</td>
+      <td>-1866</td>
+      <td>-2000.0</td>
+      <td>-4208</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Sales staff</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>WEDNESDAY</td>
+      <td>11</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Business Entity Type 3</td>
+      <td>...</td>
+      <td>0.2446</td>
+      <td>0.3739</td>
+      <td>0.0388</td>
+      <td>0.0817</td>
+      <td>reg oper account</td>
+      <td>block of flats</td>
+      <td>0.3700</td>
+      <td>Panel</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1805.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100038</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>1</td>
+      <td>180000.0</td>
+      <td>625500.0</td>
+      <td>32067.0</td>
+      <td>625500.0</td>
+      <td>Unaccompanied</td>
+      <td>Working</td>
+      <td>Secondary / secondary special</td>
+      <td>Married</td>
+      <td>House / apartment</td>
+      <td>0.010032</td>
+      <td>-13040</td>
+      <td>-2191</td>
+      <td>-4000.0</td>
+      <td>-4262</td>
+      <td>16.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>FRIDAY</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Business Entity Type 3</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-821.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 121 columns</p>
+</div>
+
+
+
+<p>테스트 세트가 상당히 작고 대상 컬럼이 부족하다.</p>
+<h2 id="탐색적-데이터-분석"><a href="#탐색적-데이터-분석" class="headerlink" title="탐색적 데이터 분석."></a>탐색적 데이터 분석.</h2><p>탐색적 데이터 분석(EDA)은 우리가 통계를 계산하고 수치를 만들어 데이터 내의 경향, 이상 징후, 패턴 또는 관계를 찾아내는 개방형 프로세스다. EDA의 목표는 우리의 데이터가 우리에게 말해줄 수 있는 것을 배우는 것이다. 일반적으로 높은 수준의 개요에서 시작되며, 데이터에서 흥미로운 영역을 발견하면 특정 영역으로 좁혀진다. 그 결과들은 그 자체로 흥미로울 수도 있고, 어떤 기능을 사용할지 결정하는 것을 도와줌으로써 우리의 모델 선택을 알리는 데 사용될 수도 있다.</p>
+<h3 id="대상-열의-분포-조사"><a href="#대상-열의-분포-조사" class="headerlink" title="대상 열의 분포 조사"></a>대상 열의 분포 조사</h3><p>대상은 대출금 0을 제때 상환했거나 고객이 상환에 어려움을 겪었음을 나타내는 1을 예측하라는 것이다. 우리는 우선 각 범주에 속하는 대출의 수를 조사할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_train[<span class="string">&#x27;TARGET&#x27;</span>].value_counts()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0    282686
+1     24825
+Name: TARGET, dtype: int64</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_train[<span class="string">&#x27;TARGET&#x27;</span>].astype(<span class="built_in">int</span>).plot.hist();</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/home_credit_default_risk/output_24_0.png" alt="png"></p>
+<p>이 정보로부터, 우리는 이것이 불균형한 계급 문제임을 알 수 있다. 제때 갚지 못한 대출보다 제때 갚은 대출이 훨씬 많다. 일단 우리가 좀 더 정교한 기계 학습 모델에 들어가면, 우리는 이러한 불균형을 반영하기 위해 데이터에서의 그들의 표현에 따라 수업에 무게를 둘 수 있다.</p>
+<h3 id="결측값-검사"><a href="#결측값-검사" class="headerlink" title="결측값 검사"></a>결측값 검사</h3><p>다음으로 각 열에 있는 결측값의 수와 백분율을 살펴보기로 한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 결측값을 열로 계산하는 함수 #Funct </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">missing_values_table</span>(<span class="params">df</span>):</span></span><br><span class="line">        <span class="comment"># 결측값 합계</span></span><br><span class="line">        mis_val = df.isnull().<span class="built_in">sum</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 결측값 백분율</span></span><br><span class="line">        mis_val_percent = <span class="number">100</span> * df.isnull().<span class="built_in">sum</span>() / <span class="built_in">len</span>(df)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 결과로 테이블 만들기</span></span><br><span class="line">        mis_val_table = pd.concat([mis_val, mis_val_percent], axis=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 열 이름 바꾸기</span></span><br><span class="line">        mis_val_table_ren_columns = mis_val_table.rename(</span><br><span class="line">        columns = &#123;<span class="number">0</span> : <span class="string">&#x27;Missing Values&#x27;</span>, <span class="number">1</span> : <span class="string">&#x27;% of Total Values&#x27;</span>&#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 누락된 내림차순 백분율을 기준으로 테이블 정렬</span></span><br><span class="line">        mis_val_table_ren_columns = mis_val_table_ren_columns[</span><br><span class="line">            mis_val_table_ren_columns.iloc[:,<span class="number">1</span>] != <span class="number">0</span>].sort_values(</span><br><span class="line">        <span class="string">&#x27;% of Total Values&#x27;</span>, ascending=<span class="literal">False</span>).<span class="built_in">round</span>(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 일부 요약 정보 인쇄</span></span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&quot;Your selected dataframe has &quot;</span> + <span class="built_in">str</span>(df.shape[<span class="number">1</span>]) + <span class="string">&quot; columns.\n&quot;</span>      </span><br><span class="line">            <span class="string">&quot;There are &quot;</span> + <span class="built_in">str</span>(mis_val_table_ren_columns.shape[<span class="number">0</span>]) +</span><br><span class="line">              <span class="string">&quot; columns that have missing values.&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 누락된 정보가 있는 데이터 프레임 반환</span></span><br><span class="line">        <span class="keyword">return</span> mis_val_table_ren_columns</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 결측값 통계량</span></span><br><span class="line">missing_values = missing_values_table(app_train)</span><br><span class="line">missing_values.head(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Missing Values</th>
+      <th>% of Total Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>COMMONAREA_MEDI</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_AVG</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MODE</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MODE</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_AVG</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>FONDKAPREMONT_MODE</th>
+      <td>210295</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MODE</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_AVG</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MODE</th>
+      <td>208642</td>
+      <td>67.8</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_MEDI</th>
+      <td>208642</td>
+      <td>67.8</td>
+    </tr>
+    <tr>
+      <th>FLOORSMIN_AVG</th>
+      <td>208642</td>
+      <td>67.8</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MODE</th>
+      <td>204488</td>
+      <td>66.5</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_MEDI</th>
+      <td>204488</td>
+      <td>66.5</td>
+    </tr>
+    <tr>
+      <th>YEARS_BUILD_AVG</th>
+      <td>204488</td>
+      <td>66.5</td>
+    </tr>
+    <tr>
+      <th>OWN_CAR_AGE</th>
+      <td>202929</td>
+      <td>66.0</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_AVG</th>
+      <td>182590</td>
+      <td>59.4</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MEDI</th>
+      <td>182590</td>
+      <td>59.4</td>
+    </tr>
+    <tr>
+      <th>LANDAREA_MODE</th>
+      <td>182590</td>
+      <td>59.4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="열-유형"><a href="#열-유형" class="headerlink" title="열 유형"></a>열 유형</h3><p>각 데이터 유형의 열 수를 살펴보자. int64와 float64는 숫자 변수(이산형 또는 연속형일 수 있음)이다. 객체 열은 문자열을 포함하며 범주형 형상이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 각 열 유형별 수</span></span><br><span class="line">app_train.dtypes.value_counts()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>float64    65
+int64      41
+object     16
+dtype: int64</code></pre>
+<p>이제 각 개체(범주형) 열에 있는 고유한 항목 수를 살펴봅시다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 각 객체 열의 고유 클래스 수</span></span><br><span class="line">app_train.select_dtypes(<span class="string">&#x27;object&#x27;</span>).apply(pd.Series.nunique, axis = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>NAME_CONTRACT_TYPE             2
+CODE_GENDER                    3
+FLAG_OWN_CAR                   2
+FLAG_OWN_REALTY                2
+NAME_TYPE_SUITE                7
+NAME_INCOME_TYPE               8
+NAME_EDUCATION_TYPE            5
+NAME_FAMILY_STATUS             6
+NAME_HOUSING_TYPE              6
+OCCUPATION_TYPE               18
+WEEKDAY_APPR_PROCESS_START     7
+ORGANIZATION_TYPE             58
+FONDKAPREMONT_MODE             4
+HOUSETYPE_MODE                 3
+WALLSMATERIAL_MODE             7
+EMERGENCYSTATE_MODE            2
+dtype: int64</code></pre>
+<p>대부분의 범주형 변수의 고유 항목 수는 상대적으로 적다. 우리는 이러한 범주형 변수에 대처할 방법을 찾아야 할 것이다!</p>
+<p>범주형 변수를 인코딩하는 중:<br>더 나아가기 전에 성가신 범주형 변수를 다뤄야 한다. 기계 학습 모델은 유감스럽게도 범주형 변수를 다룰 수 없다(LightGBM과 같은 일부 모델은 제외). 따라서 이 변수들을 모델로 넘기기 전에 숫자로 인코딩(표현)하는 방법을 찾아야 한다. 이 과정을 수행하는 방법에는 크게 두 가지가 있다.</p>
+<ul>
+<li><p>라벨 인코딩: 정수를 사용하여 범주형 변수의 각 고유 범주를 할당하십시오. 새 열이 생성되지 않음 예는 아래와 같다.</p>
+</li>
+<li><p>단일 핫 인코딩: 범주형 변수의 각 고유 범주에 대해 새 열을 생성하십시오. 각 관측치는 해당 범주에 대해 열에 1을, 다른 모든 새 열에 0을 받는다.</p>
+</li>
+</ul>
+<p>라벨 인코딩의 문제는 카테고리에 임의의 순서를 부여한다는 것이다. 각 범주에 할당된 값은 랜덤이며 범주의 고유한 측면을 반영하지 않는다. 위의 예에서 프로그래머는 4를, 데이터 과학자는 1을 받지만, 만약 우리가 같은 과정을 다시 한다면, 라벨이 거꾸로 되거나 완전히 달라질 수 있다. 정수의 실제 할당은 임의적이다. 따라서 우리가 라벨 인코딩을 수행할 때 모델은 형상의 상대적 값(예: 프로그래머 = 4 및 데이터 과학자 = 1)을 사용하여 우리가 원하는 가중치를 할당할 수 있다. 범주형 변수(예: 남성/여성)에 대해 고유한 값이 두 개뿐이면 레이블 인코딩은 괜찮지만 두 개 이상의 고유한 범주에 대해서는 하나의 핫 인코딩이 안전한 옵션이다.</p>
+<p>이러한 접근방식의 상대적 장점에 대해 일부 논쟁이 있으며, 일부 모델은 라벨로 인코딩된 범주형 변수를 문제 없이 다룰 수 있다. 여기 좋은 스택 오버플로 토론이 있다. 클래스가 많은 범주형 변수에 대해서는 (그리고 이것은 개인적인 의견일 뿐이다) 하나의 핫 인코딩이 범주에 임의의 값을 부과하지 않기 때문에 가장 안전한 접근법이라고 생각한다. 단일 핫 인코딩의 유일한 단점은 피쳐 수(데이터의 치수)가 범주가 많은 범주형 변수로 폭발할 수 있다는 점이다. 이를 처리하기 위해 PCA나 기타 차원성 감소 방법에 따라 1회 핫 인코딩을 수행하여 치수 수를 줄일 수 있다(여전히 정보 보존을 위해 노력).</p>
+<p>이 노트북에서는 범주 2개만 있는 범주형 변수에 레이블 인코딩을 사용하고 범주 2개 이상의 범주형 변수에 대해 One-Hot 인코딩을 사용할 것이다. 이 과정은 프로젝트에 더 깊이 들어가면서 변화가 필요할 수 있지만, 현재로서는 이것이 우리에게 어떤 영향을 미치는지 알 수 있을 것이다. (우리는 또한 이 노트북에서 어떠한 차원성 감소도 사용하지 않고 향후 반복해서 검토할 것이다.)</p>
+<h3 id="레이블-인코딩-및-단일-핫-인코딩"><a href="#레이블-인코딩-및-단일-핫-인코딩" class="headerlink" title="레이블 인코딩 및 단일 핫 인코딩"></a>레이블 인코딩 및 단일 핫 인코딩</h3><p>위에서 설명한 정책을 실행하자: 2개의 고유한 범주를 가진 범주형 변수(dtype == 객체)에 대해서는 레이블 인코딩을 사용하고, 2개 이상의 고유한 범주를 가진 범주형 변수에 대해서는 1-hot 인코딩을 사용한다.</p>
+<p>라벨 인코딩의 경우 Scikit-Learn LabelEncoder를 사용하고, 핫 인코딩의 경우 팬더 get_dummies(df) 기능을 사용한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 레이블 인코더 객체 생성</span></span><br><span class="line">le = LabelEncoder()</span><br><span class="line">le_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 열을 반복하십시오</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> app_train:</span><br><span class="line">    <span class="keyword">if</span> app_train[col].dtype == <span class="string">&#x27;object&#x27;</span>:</span><br><span class="line">        <span class="comment"># 고유 범주가 2개 이하인 경우</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">list</span>(app_train[col].unique())) &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="comment"># 교육 데이터 교육</span></span><br><span class="line">            le.fit(app_train[col])</span><br><span class="line">            <span class="comment"># 교육 및 테스트 데이터 모두 혁신</span></span><br><span class="line">            app_train[col] = le.transform(app_train[col])</span><br><span class="line">            app_test[col] = le.transform(app_test[col])</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 레이블이 인코딩된 열 수를 추적</span></span><br><span class="line">            le_count += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">print(<span class="string">&#x27;%d columns were label encoded.&#x27;</span> % le_count)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0 columns were label encoded.</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 범주형 변수의 단일 핫 인코딩</span></span><br><span class="line">app_train = pd.get_dummies(app_train)</span><br><span class="line">app_test = pd.get_dummies(app_test)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;Training Features shape: &#x27;</span>, app_train.shape)</span><br><span class="line">print(<span class="string">&#x27;Testing Features shape: &#x27;</span>, app_test.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Training Features shape:  (307511, 243)
+Testing Features shape:  (48744, 239)</code></pre>
+<h3 id="교육-및-테스트-데이터-정렬"><a href="#교육-및-테스트-데이터-정렬" class="headerlink" title="교육 및 테스트 데이터 정렬"></a>교육 및 테스트 데이터 정렬</h3><p>훈련 데이터와 시험 데이터 모두에서 동일한 특징(색상)이 있어야 한다. 원핫 인코딩은 시험 데이터에 나타나지 않는 범주를 포함하는 일부 범주형 변수가 있었기 때문에 훈련 데이터에 더 많은 열을 생성했다. 테스트 데이터에 없는 교육 데이터 열을 제거하려면 데이터 프레임을 정렬해야 한다. 먼저 교육 데이터에서 대상 열을 추출한다(시험 데이터에는 없지만 이 정보를 보관해야 하기 때문이다). 정렬을 수행할 때 행이 아닌 열에 따라 데이터 프레임을 정렬하도록 축 = 1을 설정해야 함! </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">train_labels = app_train[<span class="string">&#x27;TARGET&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 교육 및 테스트 데이터 정렬, 두 데이터 프레임에 열만 유지</span></span><br><span class="line">app_train, app_test = app_train.align(app_test, join = <span class="string">&#x27;inner&#x27;</span>, axis = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 목표값 다시 추가</span></span><br><span class="line">app_train[<span class="string">&#x27;TARGET&#x27;</span>] = train_labels</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;Training Features shape: &#x27;</span>, app_train.shape)</span><br><span class="line">print(<span class="string">&#x27;Testing Features shape: &#x27;</span>, app_test.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Training Features shape:  (307511, 240)
+Testing Features shape:  (48744, 239)</code></pre>
+<p>교육 및 테스트 데이터셋은 이제 머신러닝에 필요한 기능과 동일한 기능을 가지고 있다. 원핫 인코딩으로 피쳐 수가 크게 늘었다. 데이터셋 크기를 줄이기 위해 언젠가는 차원성 축소(관련되지 않은 기능 제거)를 시도해보려고 할 것이다.</p>
+<h3 id="탐색-데이터-분석으로-돌아가기"><a href="#탐색-데이터-분석으로-돌아가기" class="headerlink" title="탐색 데이터 분석으로 돌아가기"></a>탐색 데이터 분석으로 돌아가기</h3><p>이상 징후<br>우리가 EDA를 할 때 항상 경계하고 싶은 한 가지 문제는 데이터 내의 이상 현상이다. 이는 잘못된 형식의 숫자, 측정 장비의 오류 또는 유효하지만 극단적인 측정 때문일 수 있다. 이상 징후를 정량적으로 지원하는 한 가지 방법은 설명 방법을 사용하여 열의 통계를 보는 것이다. DAYS_BOYDE 칼럼의 숫자는 현재 대출 신청과 관련하여 기록되기 때문에 음수가 된다. 이러한 통계치를 년 단위로 보려면 -1로 나누어 1년 내 일수로 나누면 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(app_train[<span class="string">&#x27;DAYS_BIRTH&#x27;</span>] / <span class="number">-365</span>).describe()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>count    307511.000000
+mean         43.936973
+std          11.956133
+min          20.517808
+25%          34.008219
+50%          43.150685
+75%          53.923288
+max          69.120548
+Name: DAYS_BIRTH, dtype: float64</code></pre>
+<p>그 나이들은 합리적으로 보인다. 높은 쪽이든 낮은 쪽이든 나이에 대한 특이치는 없다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>].describe()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>count    307511.000000
+mean      63815.045904
+std      141275.766519
+min      -17912.000000
+25%       -2760.000000
+50%       -1213.000000
+75%        -289.000000
+max      365243.000000
+Name: DAYS_EMPLOYED, dtype: float64</code></pre>
+<p>그건 옳지 않아! 최대값(긍정적인 것 외에)은 약 1000년</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>].plot.hist(title = <span class="string">&#x27;Days Employment Histogram&#x27;</span>);</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Days Employment&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/home_credit_default_risk/output_46_0.png" alt="png"></p>
+<p>그냥 궁금해서 변칙적인 고객들을 부분집합해서 나머지 고객들보다 채무불이행 비율이 더 높은지 낮은지 살펴보자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">anom = app_train[app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>] == <span class="number">365243</span>]</span><br><span class="line">non_anom = app_train[app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>] != <span class="number">365243</span>]</span><br><span class="line">print(<span class="string">&#x27;The non-anomalies default on %0.2f%% of loans&#x27;</span> % (<span class="number">100</span> * non_anom[<span class="string">&#x27;TARGET&#x27;</span>].mean()))</span><br><span class="line">print(<span class="string">&#x27;The anomalies default on %0.2f%% of loans&#x27;</span> % (<span class="number">100</span> * anom[<span class="string">&#x27;TARGET&#x27;</span>].mean()))</span><br><span class="line">print(<span class="string">&#x27;There are %d anomalous days of employment&#x27;</span> % <span class="built_in">len</span>(anom))</span><br></pre></td></tr></table></figure>
+
+<pre><code>The non-anomalies default on 8.66% of loans
+The anomalies default on 5.40% of loans
+There are 55374 anomalous days of employment</code></pre>
+<p>이상 징후는 채무불이행 비율이 낮은 것으로 나타났다.</p>
+<p>이상 징후를 다루는 것은 정해진 규칙 없이 정확한 상황에 따라 달라진다. 가장 안전한 방법 중 하나는 기계의 학습 전에 이상 징후를 결측값으로 설정한 다음 (귀책 사용) 입력하는 것이다. 이 경우 모든 이상 징후가 정확히 동일한 가치를 가지기 때문에 이러한 모든 대출이 공통적으로 공유될 경우에 대비하여 동일한 가치로 기입하고자 한다. 변칙적인 값들은 어느 정도 중요한 것 같아, 만약 우리가 실제로 이 값을 채웠다면 우리는 기계 학습 모델을 말해주고 싶다. 해결책으로 숫자(np.nan)가 아닌 변칙값으로 채운 다음 변칙값의 변칙 여부를 나타내는 부울란을 새로 만들겠다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 변칙적인 플래그 열 생성</span></span><br><span class="line">app_train[<span class="string">&#x27;DAYS_EMPLOYED_ANOM&#x27;</span>] = app_train[<span class="string">&quot;DAYS_EMPLOYED&quot;</span>] == <span class="number">365243</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 변칙적인 값은 nan으로 대체</span></span><br><span class="line">app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>].replace(&#123;<span class="number">365243</span>: np.nan&#125;, inplace = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">app_train[<span class="string">&#x27;DAYS_EMPLOYED&#x27;</span>].plot.hist(title = <span class="string">&#x27;Days Employment Histogram&#x27;</span>);</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Days Employment&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/home_credit_default_risk/output_50_0.png" alt="png"></p>
+<p>분포는 우리가 예상할 수 있는 것과 훨씬 일치하는 것으로 보이며, 우리는 또한 모형에 이 값들이 원래 변칙적이라는 것을 알리기 위해 새로운 열을 만들었다. (왜냐하면 우리는 일부 값, 아마도 열의 중간값으로 난을 채워야 할 것이기 때문이다.) 데이터 프레임에 Days가 있는 다른 열은 명백한 특이치가 없는 것으로 우리가 기대하는 것에 대한 것으로 보인다.</p>
+<p>매우 중요한 사항으로서, 교육 데이터에 대해 수행하는 모든 작업은 테스트 데이터에도 적용되어야 한다. 반드시 새 열을 만들고 기존 열을 테스트 데이터에 np.nan으로 채우자.          </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app_test[<span class="string">&#x27;DAYS_EMPLOYED_ANOM&#x27;</span>] = app_test[<span class="string">&quot;DAYS_EMPLOYED&quot;</span>] == <span class="number">365243</span></span><br><span class="line">app_test[<span class="string">&quot;DAYS_EMPLOYED&quot;</span>].replace(&#123;<span class="number">365243</span>: np.nan&#125;, inplace = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;There are %d anomalies in the test data out of %d entries&#x27;</span> % (app_test[<span class="string">&quot;DAYS_EMPLOYED_ANOM&quot;</span>].<span class="built_in">sum</span>(), <span class="built_in">len</span>(app_test)))</span><br></pre></td></tr></table></figure>
+
+<pre><code>There are 9274 anomalies in the test data out of 48744 entries</code></pre>
+<p>상관 관계<br>이제 범주형 변수와 특이치를 다루었으므로 EDA를 계속 진행합시다. 데이터를 이해하고 이해하는 한 가지 방법은 피쳐와 대상 간의 상관 관계를 찾는 것이다. 우리는 .corr 데이터프레임 방법을 사용하여 모든 변수와 목표값 사이의 Pearson 상관 계수를 계산할 수 있다.</p>
+<p>상관 계수는 형상의 “관련성”을 나타내는 가장 큰 방법은 아니지만, 데이터 내에서 가능한 관계에 대한 아이디어를 제공한다. 상관관계의 절대값에 대한 일반적인 해석은 다음과 같다.</p>
+<ul>
+<li>.00-19 “매우 약함”</li>
+<li>.20-.39 “weak”</li>
+<li>.40-.59 “moderate”</li>
+<li>.60-.79 “강력”</li>
+<li>.80-1.0 “매우 강함”</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 대상과의 상관관계를 찾아 정렬</span></span><br><span class="line">correlations = app_train.corr()[<span class="string">&#x27;TARGET&#x27;</span>].sort_values()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 상관관계 표시</span></span><br><span class="line">print(<span class="string">&#x27;Most Positive Correlations:\n&#x27;</span>, correlations.tail(<span class="number">15</span>))</span><br><span class="line">print(<span class="string">&#x27;\nMost Negative Correlations:\n&#x27;</span>, correlations.head(<span class="number">15</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>Most Positive Correlations:
+ OCCUPATION_TYPE_Laborers                             0.043019
+FLAG_DOCUMENT_3                                      0.044346
+REG_CITY_NOT_LIVE_CITY                               0.044395
+FLAG_EMP_PHONE                                       0.045982
+NAME_EDUCATION_TYPE_Secondary / secondary special    0.049824
+REG_CITY_NOT_WORK_CITY                               0.050994
+DAYS_ID_PUBLISH                                      0.051457
+CODE_GENDER_M                                        0.054713
+DAYS_LAST_PHONE_CHANGE                               0.055218
+NAME_INCOME_TYPE_Working                             0.057481
+REGION_RATING_CLIENT                                 0.058899
+REGION_RATING_CLIENT_W_CITY                          0.060893
+DAYS_EMPLOYED                                        0.074958
+DAYS_BIRTH                                           0.078239
+TARGET                                               1.000000
+Name: TARGET, dtype: float64
+
+Most Negative Correlations:
+ EXT_SOURCE_3                           -0.178919
+EXT_SOURCE_2                           -0.160472
+EXT_SOURCE_1                           -0.155317
+NAME_EDUCATION_TYPE_Higher education   -0.056593
+CODE_GENDER_F                          -0.054704
+NAME_INCOME_TYPE_Pensioner             -0.046209
+DAYS_EMPLOYED_ANOM                     -0.045987
+ORGANIZATION_TYPE_XNA                  -0.045987
+FLOORSMAX_AVG                          -0.044003
+FLOORSMAX_MEDI                         -0.043768
+FLOORSMAX_MODE                         -0.043226
+EMERGENCYSTATE_MODE_No                 -0.042201
+HOUSETYPE_MODE_block of flats          -0.040594
+AMT_GOODS_PRICE                        -0.039645
+REGION_POPULATION_RELATIVE             -0.037227
+Name: TARGET, dtype: float64</code></pre>
+<p>더 중요한 상관관계 몇 가지를 살펴봅시다: DAYS_BOYT는 가장 긍정적인 상관관계 입니다. (변수와 그 자체와의 상관관계가 항상 1이기 때문에 TARGET은 제외) 문서를 보면 Days_BOYT는 마이너스일(어떠한 이유로든!) 대출 당시 고객의 일(일) 연령이다. 상관관계는 양수지만, 이 특성의 값은 실제로 음수인데, 이는 클라이언트가 나이가 들수록 대출금 채무불이행(대상 == 0) 가능성이 적다는 것을 의미한다. 그건 좀 헷갈리니까 형상의 절대값을 취해서 그 다음에 상관관계는 음수가 될 겁니다.</p>
+<h3 id="상환연령이-상환에-미치는-영향"><a href="#상환연령이-상환에-미치는-영향" class="headerlink" title="상환연령이 상환에 미치는 영향"></a>상환연령이 상환에 미치는 영향</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 출생 후 양일간과 대상의 상관관계 찾기</span></span><br><span class="line">app_train[<span class="string">&#x27;DAYS_BIRTH&#x27;</span>] = <span class="built_in">abs</span>(app_train[<span class="string">&#x27;DAYS_BIRTH&#x27;</span>])</span><br><span class="line">app_train[<span class="string">&#x27;DAYS_BIRTH&#x27;</span>].corr(app_train[<span class="string">&#x27;TARGET&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>-0.07823930830982694</code></pre>
+<p>고객이 나이가 들수록 고객이 나이가 들수록 대출금을 제때 상환하는 경향이 있다는 목표와 부정적인 선형 관계가 형성된다.</p>
+<p>이 변수부터 살펴보자. 첫째, 우리는 시대의 히스토그램을 만들 수 있다. 우리는 그 줄거리를 좀 더 이해할 수 있도록 몇 년 안에 x축을 넣을 것이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 플롯 스타일 설정</span></span><br><span class="line">plt.style.use(<span class="string">&#x27;fivethirtyeight&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 연령별 연령 분포 그림 그리기</span></span><br><span class="line">plt.hist(app_train[<span class="string">&#x27;DAYS_BIRTH&#x27;</span>] / <span class="number">365</span>, edgecolor = <span class="string">&#x27;k&#x27;</span>, bins = <span class="number">25</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Age of Client&#x27;</span>); plt.xlabel(<span class="string">&#x27;Age (years)&#x27;</span>); plt.ylabel(<span class="string">&#x27;Count&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/home_credit_default_risk/output_59_0.png" alt="png"></p>
+<p>그 자체로 연령의 분포는 모든 연령대가 합리적이기 때문에 특이치가 없다는 것 이외에는 우리에게 별로 알려주지 않는다. 연령대가 대상에 미치는 영향을 시각화하기 위해 다음으로 대상의 값으로 색칠한 KDE(커널 밀도 추정도)를 만들겠다. 커널 밀도 추정 그림은 단일 변수의 분포를 보여주며 평활 히스토그램으로 생각할 수 있다(대개 가우스인 커널을 각 데이터 지점에서 계산한 다음 모든 개별 커널을 평균하여 단일 평활 곡선을 개발함으로써 생성된다). 우리는 이 그래프에 해저 Kdeplot을 사용할 것이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize = (<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 제때 상환된 대출의 KDE 플롯</span></span><br><span class="line">sns.kdeplot(app_train.loc[app_train[<span class="string">&#x27;TARGET&#x27;</span>] == <span class="number">0</span>, <span class="string">&#x27;DAYS_BIRTH&#x27;</span>] / <span class="number">365</span>, label = <span class="string">&#x27;target == 0&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 제때 상환되지 않은 대출의 KDE 플롯</span></span><br><span class="line">sns.kdeplot(app_train.loc[app_train[<span class="string">&#x27;TARGET&#x27;</span>] == <span class="number">1</span>, <span class="string">&#x27;DAYS_BIRTH&#x27;</span>] / <span class="number">365</span>, label = <span class="string">&#x27;target == 1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 플롯의 라벨링</span></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Age (years)&#x27;</span>); plt.ylabel(<span class="string">&#x27;Density&#x27;</span>); plt.title(<span class="string">&#x27;Distribution of Ages&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/home_credit_default_risk/output_61_0.png" alt="png"></p>
+<p>목표 == 1 커브가 범위의 젊은 쪽 끝을 향해 기울어진다. 이는 유의미한 상관 계수(-0.07 상관 계수)는 아니지만, 이 변수는 대상에 영향을 미치기 때문에 머신러닝 모델에서 유용할 것으로 보인다. 이 관계를 다른 방식으로 보자: 평균적으로 연령대별 대출금 상환 실패.</p>
+<p>이 그래프를 만들기 위해 먼저 나이 범주를 각각 5년씩의 빈으로 자른다. 그런 다음 각 빈에 대해 대상의 평균가치를 산출하는데, 이는 각 연령 범주별로 상환되지 않은 대출의 비율을 알려준다.</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>home_credit_default_risk</p><p><a href="https://choichiwo.github.io/2020/11/05/home_credit_default_risk/">https://choichiwo.github.io/2020/11/05/home_credit_default_risk/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>choi</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-11-05</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2020-11-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/11/04/titanic/"><span class="level-item">titanic</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-05T05:16:07.477Z">2020-11-05</time></p><p class="title"><a href="/2020/11/05/home_credit_default_risk/">home_credit_default_risk</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-04T06:28:05.467Z">2020-11-04</time></p><p class="title"><a href="/2020/11/04/titanic/">titanic</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-10-29T07:28:15.778Z">2020-10-29</time></p><p class="title"><a href="/2020/10/29/hello-world/">Hello World</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">November 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">October 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Report" height="28"></a><p class="is-size-7"><span>&copy; 2020 choi</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
