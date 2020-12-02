@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Report</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Report"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Report"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="12345678910import pandas as pdfrom sklearn import metricsfrom sklearn.ensemble import RandomForestClassifierfrom sklearn.linear_model import LogisticRegression, SGDClassifierfrom sklearn.model_selecti"><meta property="og:type" content="blog"><meta property="og:title" content="Report"><meta property="og:url" content="https://choichiwo.github.io/2020/12/02/pima_indians_diabetes/"><meta property="og:site_name" content="Report"><meta property="og:description" content="12345678910import pandas as pdfrom sklearn import metricsfrom sklearn.ensemble import RandomForestClassifierfrom sklearn.linear_model import LogisticRegression, SGDClassifierfrom sklearn.model_selecti"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://choichiwo.github.io/images/pima_indians_diabetes/output_18_0.png"><meta property="article:published_time" content="2020-12-02T02:29:26.590Z"><meta property="article:modified_time" content="2020-12-02T02:33:38.353Z"><meta property="article:author" content="choi"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/pima_indians_diabetes/output_18_0.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://choichiwo.github.io/2020/12/02/pima_indians_diabetes/"},"headline":"Report","image":["https://choichiwo.github.io/images/pima_indians_diabetes/output_18_0.png"],"datePublished":"2020-12-02T02:29:26.590Z","dateModified":"2020-12-02T02:33:38.353Z","author":{"@type":"Person","name":"choi"},"description":"12345678910import pandas as pdfrom sklearn import metricsfrom sklearn.ensemble import RandomForestClassifierfrom sklearn.linear_model import LogisticRegression, SGDClassifierfrom sklearn.model_selecti"}</script><link rel="canonical" href="https://choichiwo.github.io/2020/12/02/pima_indians_diabetes/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Report" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-12-02T02:29:26.590Z" title="2020-12-02T02:29:26.590Z">2020-12-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2020-12-02T02:33:38.353Z" title="2020-12-02T02:33:38.353Z">2020-12-02</time></span><span class="level-item">18 minutes read (About 2684 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"> </h1><div class="content"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression, SGDClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split, cross_val_score, cross_val_predict, StratifiedKFold</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Mount Google Drive</span></span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> drive <span class="comment"># import drive from google colab</span></span><br><span class="line"></span><br><span class="line">ROOT = <span class="string">&quot;/content/drive&quot;</span>     <span class="comment"># default location for the drive</span></span><br><span class="line">print(ROOT)                 <span class="comment"># print content of ROOT (Optional)</span></span><br><span class="line">drive.mount(ROOT)           <span class="comment"># we mount the google drive at /content/drive</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/content/drive
+Mounted at /content/drive</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import join used to join ROOT path and MY_GOOGLE_DRIVE_PATH</span></span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> join  </span><br><span class="line"></span><br><span class="line"><span class="comment"># path to your project on Google Drive</span></span><br><span class="line"><span class="comment"># MY_GOOGLE_DRIVE_PATH = &#x27;My Drive/Class_Python/MachineLearning/data&#x27;</span></span><br><span class="line">MY_GOOGLE_DRIVE_PATH = <span class="string">&#x27;My Drive&#x27;</span></span><br><span class="line"></span><br><span class="line">PROJECT_PATH = join(ROOT, MY_GOOGLE_DRIVE_PATH)</span><br><span class="line">print(PROJECT_PATH)</span><br></pre></td></tr></table></figure>
+
+<pre><code>/content/drive/My Drive</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%cd <span class="string">&quot;&#123;PROJECT_PATH&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/content/drive/My Drive</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diabetes_data = pd.read_csv(<span class="string">&#x27;diabetes.csv&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">X = diabetes_data.drop([<span class="string">&quot;Outcome&quot;</span>],axis = <span class="number">1</span>)</span><br><span class="line">y = diabetes_data[<span class="string">&quot;Outcome&quot;</span>]</span><br><span class="line"><span class="comment"># 훈련 세트를 사용하여 다양한 하이퍼 파라미터로 여러 모델을 훈련하고 검증 세트에서 가장 잘 수행되는 모델과 하이퍼 파라미터를 선택합니다.</span></span><br><span class="line"><span class="comment"># 모델 유형과 하이퍼 파라미터가 선택되면 전체 훈련 세트에서 이러한 하이퍼 파라미터를 사용하여 최종 모델을 훈련시키고 일반화 된 오류는 테스트 세트에서 최종적으로 측정됩니다.</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, stratify = y, random_state = <span class="number">56</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># StratifiedKFold 클래스는 계층화 된 샘플링을 수행하여 각 클래스의 대표 비율을 포함하는 폴드를 생성합니다.</span></span><br><span class="line">cv = StratifiedKFold(n_splits=<span class="number">10</span>, shuffle= <span class="literal">False</span>, random_state= <span class="number">76</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 로지스틱 회귀</span></span><br><span class="line">clf_logreg = LogisticRegression()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 검증 세트에 대한 클래스 예측을합니다.</span></span><br><span class="line">y_pred_class_logreg = cross_val_predict(clf_logreg, X_train, y_train, cv = cv)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 1에 대한 예측 확률, 양성 클래스의 확률</span></span><br><span class="line">y_pred_prob_logreg = cross_val_predict(clf_logreg, X_train, y_train, cv = cv, method=<span class="string">&quot;predict_proba&quot;</span>)</span><br><span class="line">y_pred_prob_logreg_class1 = y_pred_prob_logreg[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># SGD 분류기</span></span><br><span class="line">clf_SGD = SGDClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 적합 모델</span></span><br><span class="line">clf_SGD.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 검증 세트에 대한 클래스 예측을합니다.</span></span><br><span class="line">y_pred_class_SGD = cross_val_predict(clf_SGD, X_train, y_train, cv = cv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 1에 대한 예측 확률</span></span><br><span class="line">y_pred_prob_SGD = cross_val_predict(clf_SGD, X_train, y_train, cv = cv, method=<span class="string">&quot;decision_function&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 랜덤 포레스트 분류기</span></span><br><span class="line">clf_rfc = RandomForestClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 적합 모델</span></span><br><span class="line">clf_rfc.fit(X_train, y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 검증 세트에 대한 클래스 예측을합니다.</span></span><br><span class="line">y_pred_class_rfc = cross_val_predict(clf_rfc, X_train, y_train, cv = cv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 1에 대한 예측 확률</span></span><br><span class="line">y_pred_prob_rfc = cross_val_predict(clf_rfc, X_train, y_train, cv = cv, method=<span class="string">&quot;predict_proba&quot;</span>)</span><br><span class="line">y_pred_prob_rfc_class1 = y_pred_prob_rfc[:, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>빠른 참고 : SkLearn의 “predict_log_proba”는 확률의 로그를 제공합니다. 확률이 매우 작아 질 수 있으므로 종종 더 편리합니다.</li>
+</ul>
+<p>널 정확도(null_accuracy) : </p>
+<ul>
+<li>항상 가장 빈번한 클래스를 예측하여 얻을 수있는 정확도.</li>
+<li>이것은 항상 0/1을 예측하는 멍청한 모델이 “null_accuracy”%의 시간에 맞을 것이라는 것을 의미합니다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseClassifier</span>(<span class="params">BaseEstimator</span>):</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">self, X, y=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">self, X</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.zeros((<span class="built_in">len</span>(X), <span class="number">1</span>), dtype=<span class="built_in">bool</span>)</span><br><span class="line"></span><br><span class="line">base_clf = BaseClassifier()</span><br><span class="line">cross_val_score(base_clf, X_train, y_train, cv=<span class="number">10</span>, scoring=<span class="string">&quot;accuracy&quot;</span>).mean()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 방법 2</span></span><br><span class="line"><span class="comment"># null 정확도 계산 (바이너리 / 다중 클래스 분류 문제의 경우)</span></span><br><span class="line"><span class="comment"># null_accuracy = y_train.value_counts (). head (1) / len (y_train)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0.6509981851179674</code></pre>
+<p><strong>분류 정확도</strong></p>
+<ul>
+<li>분류 정확도 또는 정확도는 총 입력 샘플 수에 대한 올바른 예측 수의 비율입니다.<br>$Accuracy = \frac{Number\ of\ correct\ predictions}{Total\ number\ of\ predictions\ made} = \frac{TP + TN}{TP + TN + FP + FN}$</li>
+</ul>
+<p><strong>정확도 측정 항목을 사용하는 경우 :</strong></p>
+<ul>
+<li>각 클래스에 속하는 샘플 수가 거의 동일한 경우.</li>
+</ul>
+<p><strong>정확도 측정 항목을 사용하지 않는 경우 :</strong></p>
+<ul>
+<li>하나의 클래스 만 대부분의 샘플을 보유 할 때.</li>
+</ul>
+<p>예 : 훈련 세트에 클래스 A의 샘플이 98 %이고 클래스 B의 샘플이 2 %라고 가정합니다. 그러면 우리 모델은 클래스 A에 속하는 모든 훈련 샘플을 간단히 예측하여 98 %의 훈련 정확도를 쉽게 얻을 수 있습니다.</p>
+<p>동일한 모델이 클래스 A의 60 % 샘플과 클래스 B의 40 % 샘플이있는 테스트 세트에서 테스트되면 테스트 정확도가 60 %로 떨어집니다. 분류 정확도는 우리에게 높은 정확도를 달성한다는 잘못된 감각을 줄 수 있습니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 정확도 계산</span></span><br><span class="line">acc_logreg = cross_val_score(clf_logreg, X_train, y_train, cv = cv, scoring= <span class="string">&#x27;accuracy&#x27;</span>).mean()</span><br><span class="line">acc_SGD = cross_val_score(clf_SGD, X_train, y_train, cv = cv, scoring=<span class="string">&#x27;accuracy&#x27;</span>).mean()</span><br><span class="line">acc_rfc = cross_val_score(clf_rfc, X_train, y_train, cv= cv, scoring= <span class="string">&#x27;accuracy&#x27;</span>).mean()</span><br><span class="line"></span><br><span class="line">acc_logreg,  acc_SGD, acc_rfc</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(0.7797035692679977, 0.5382032667876588, 0.7762855414398064)</code></pre>
+<p>로그 손실 / 로그 손실 / 로지스틱 손실 / 교차 엔트로피 손실</p>
+<ul>
+<li>로그 손실로 작업 할 때 분류기는 모든 샘플에 대해 각 클래스에 확률을 할당해야합니다.</li>
+<li>로그 손실은 실제 레이블과 비교하고 잘못된 분류에 페널티를 적용하여 모델 확률의 불확실성을 측정합니다.</li>
+<li>로그 손실은 둘 이상의 레이블에 대해서만 정의됩니다.</li>
+<li>로그 손실은 예측 확률이 향상됨에 따라 점차 감소하므로 로그 손실이 0에 가까울수록 정확도가 높아지고 로그 손실이 0에서 멀어지면 정확도가 낮아집니다.</li>
+<li>로그 손실은 (0, ∞] 범위에 있습니다.</li>
+</ul>
+<p>M 클래스에 속하는 N 개의 샘플이 있다고 가정하면 로그 손실은 다음과 같이 계산됩니다.</p>
+<p>$Log\ Loss = \frac{-1}{N} \sum_{i=1}^{N} \sum_{i=1}^{M}  y_{ij} * \log(\hat{y_{ij}})$</p>
+<p>어디,</p>
+<p>$\log(\hat{y_{ij}})$는 샘플 i가 클래스 j에 속하는지 여부를 나타냅니다.</p>
+<p>$p_{ij}$는 클래스 j에 속하는 샘플 i의 확률을 나타냅니다.</p>
+<p>음수 부호는 항상 음수 인 $\log(\hat{y_{ij}})$ 출력을 부정합니다. $y_{ij}$ ^는 확률 (0-1)을 출력하고, log (x)는 0 &lt;x &lt;1이면 음수입니다.</p>
+<p>예 : 학습 레이블은 0과 1이지만 학습 예측은 0.4, 0.6, 0.89 등입니다. 모델의 오류 측정 값을 계산하기 위해 0.5보다 큰 값을 갖는 모든 관측 값을 1로 분류 할 수 있습니다. 우리는 오 분류를 증가시킬 위험이 높습니다. 확률이 0.4, 0.45, 0.49 인 많은 값이 1의 참값을 가질 수 있기 때문입니다.</p>
+<p>이것이 logLoss가 등장하는 곳입니다.</p>
+<p>이제 LogLoss의 공식을 자세히 살펴 보겠습니다. yij 및 $p_{ij}$ 값에는 4 가지 주요 사례가있을 수 있습니다.</p>
+<p>Case 1 :  $y_{ij}$ =1 ,  $p_{ij}$  = High</p>
+<p>Case 2 :  $y_{ij}$ =1 ,  $p_{ij}$  = Low</p>
+<p>Case 3 :  $y_{ij}$ =0 ,  $p_{ij}$  = Low</p>
+<p>Case 4 :  $y_{ij}$ =0 ,  $p_{ij}$  = High</p>
+<p>LogLoss는 불확실성을 어떻게 측정합니까?</p>
+<p>케이스 1과 케이스 3이 더 많이있는 경우 로그 로스 공식 내부의 합계 (및 평균)는 케이스 2와 케이스 4가 추가 된 경우에 비해 훨씬 더 커질 것입니다. 이제이 값은 좋은 예측을 나타내는 Case 1 및 Case 3만큼 큽니다. (-1)을 곱하면 값을 가능한 한 작게 만듭니다. 이것은 이제 직관적으로 의미합니다-값이 작을수록 모델이 더 좋습니다. 즉, 로그 손실이 더 적고, 모델이 더 좋습니다. 즉, 불확실성이 작을수록 모델이 더 좋습니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># logloss 계산</span></span><br><span class="line">logloss_logreg = cross_val_score(clf_logreg, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;neg_log_loss&#x27;</span>).mean()</span><br><span class="line">logloss_rfc = cross_val_score(clf_rfc, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;neg_log_loss&#x27;</span>).mean()</span><br><span class="line"><span class="comment"># SGDClassifier의 힌지 손실은 확률 추정을 지원하지 않습니다.</span></span><br><span class="line"><span class="comment"># Scikit-learn의 CalibratedClassifierCV에서 SGDClassifier를 기본 추정기로 설정하여 확률 추정치를 생성 할 수 있습니다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.calibration <span class="keyword">import</span> CalibratedClassifierCV</span><br><span class="line"></span><br><span class="line">new_clf_SGD = CalibratedClassifierCV(clf_SGD)</span><br><span class="line">new_clf_SGD.fit(X_train, y_train)</span><br><span class="line">logloss_SGD = cross_val_score(new_clf_SGD, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;neg_log_loss&#x27;</span>).mean()</span><br><span class="line"></span><br><span class="line">logloss_logreg, logloss_SGD, logloss_rfc</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(-0.48368646454082465, -0.6355939447752668, -0.4784830149254017)</code></pre>
+<p><strong>ROC 곡선</strong></p>
+<p>ROC는 민감도와 특이 도로 나눌 수 있습니다. 최상의 모델을 선택하는 것은 1을 정확하게 예측하거나 0을 정확하게 예측하는 것 사이의 일종의 균형입니다. 즉, 감도와 특이성.</p>
+<ul>
+<li><p>True Positive Rate (감도 / 리콜) : True Positive Rate는 TP / (FN + TP)로 정의됩니다. 참 양성률은 모든 긍정적 인 데이터 요소와 관련하여 올바르게 긍정적 인 것으로 간주되는 긍정적 인 데이터 요소의 비율에 해당합니다.</p>
+</li>
+<li><p>False Positive Rate (Specificity) : False Positive Rate는 FP / (FP + TN)로 정의됩니다. False Positive Rate는 모든 부정적인 데이터 포인트와 관련하여 실수로 긍정으로 간주되는 부정적인 데이터 포인트의 비율에 해당합니다.</p>
+</li>
+</ul>
+<p>참 양성률과 거짓 양성률은 모두 [0, 1] 범위의 값을 갖습니다. TPR과 FPR은 모두 (0.00, 0.02, 0.04,…., 1.00)과 같은 임계 값에서 계산되고 그래프가 그려집니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 중요 : 첫 번째 인수는 참 값이고 두 번째 인수는 예측 확률입니다.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># y_test와 y_pred_prob를 통과합니다.</span></span><br><span class="line"><span class="comment"># y_pred_class를 사용하지 않습니다. 오류를 생성하지 않고 잘못된 결과를 제공하기 때문입니다.</span></span><br><span class="line"><span class="comment"># roc_curve는 3 개의 객체를 반환합니다. </span></span><br><span class="line"></span><br><span class="line">fpr_logreg, tpr_logreg, thresholds_logreg = metrics.roc_curve(y_train, y_pred_prob_logreg_class1)</span><br><span class="line">fpr_rfc, tpr_rfc, thresholds_rfc = metrics.roc_curve(y_train, y_pred_prob_rfc_class1)</span><br><span class="line">fpr_SGD, tpr_SGD, thresholds_SGD = metrics.roc_curve(y_train, y_pred_prob_SGD)</span><br><span class="line"></span><br><span class="line">plt.plot(fpr_logreg, tpr_logreg, label=<span class="string">&quot;logreg&quot;</span>)</span><br><span class="line">plt.plot(fpr_rfc, tpr_rfc, label=<span class="string">&quot;rfc&quot;</span>)</span><br><span class="line">plt.plot(fpr_SGD, tpr_SGD, label=<span class="string">&quot;SGD&quot;</span>)</span><br><span class="line">plt.xlim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">plt.ylim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.size&#x27;</span>] = <span class="number">12</span></span><br><span class="line">plt.title(<span class="string">&#x27;ROC curve&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;False Positive Rate (1 - Specificity)&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;True Positive Rate (Sensitivity)&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="string">&quot;lower right&quot;</span>, fontsize=<span class="number">10</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/pima_indians_diabetes/output_18_0.png" alt="png"></p>
+<p>ROC 플롯 해석 :<br>ROC 플롯을 해석하는 것은 일반 라인 플롯과 매우 다릅니다. X와 Y 축이 있지만 X 값이 0.25 인 경우 Y 값은 .9로 읽지 않기 때문입니다.</p>
+<p>대신 여기에있는 것은 왼쪽 하단의 1에서 오른쪽 상단의 0까지 확률 컷오프를 추적하는 선입니다.</p>
+<p>이것은 0에서 1까지의 전체 범위의 확률 컷오프에 대해 민감도와 특이도가 어떻게 수행되는지 분석하는 방법입니다.</p>
+<p>이상적으로는 완벽한 모델이있는 경우 모든 이벤트의 확률 점수는 1이고 모든 비 이벤트의 점수는 0입니다. 이러한 모델의 경우 ROC 아래 영역은 완벽한 1이됩니다.</p>
+<p>따라서 왼쪽 아래에서 곡선을 따라 가면 확률 컷오프의 값이 1에서 0으로 감소합니다. 좋은 모델이 있으면 실제 이벤트의 대부분을 이벤트로 예측해야하므로 민감도가 높고 FPR이 낮아집니다. 이 경우 곡선은 오른쪽 상단에 도달하기 전에 넓은 영역을 포함하여 가파르게 상승합니다.</p>
+<p>따라서 ROC 곡선 아래 영역이 클수록 모델이 더 좋습니다.</p>
+<p>ROC 곡선은 예측 확률 컷오프의 다양한 값에 대해 모델이 얼마나 잘 수행하는지 측정하는 유일한 측정 항목입니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 임계 값을 받아들이고 민감도와 특이성을 인쇄하는 함수를 정의합니다.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate_threshold</span>(<span class="params">tpr, fpr,clf_threshold, threshold</span>):</span></span><br><span class="line">    print(<span class="string">&#x27;Sensitivity:&#x27;</span>, tpr[clf_threshold &gt; threshold][<span class="number">-1</span>])</span><br><span class="line">    print(<span class="string">&#x27;Specificity:&#x27;</span>, <span class="number">1</span> - fpr[clf_threshold &gt; threshold][<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 로지스틱 회귀</span></span><br><span class="line">evaluate_threshold(tpr_logreg, fpr_logreg, thresholds_logreg, <span class="number">0.2</span>), evaluate_threshold(tpr_logreg, fpr_logreg, thresholds_logreg, <span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Sensitivity: 0.8855721393034826
+Specificity: 0.5706666666666667
+Sensitivity: 0.24875621890547264
+Specificity: 0.9733333333333334
+
+
+
+
+
+(None, None)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 랜덤 포레스트 분류기</span></span><br><span class="line">evaluate_threshold(tpr_rfc, fpr_rfc, thresholds_rfc, <span class="number">0.2</span>), evaluate_threshold(tpr_rfc, fpr_rfc, thresholds_rfc, <span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Sensitivity: 0.8955223880597015
+Specificity: 0.5333333333333333
+Sensitivity: 0.14427860696517414
+Specificity: 0.984
+
+
+
+
+
+(None, None)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SGD</span></span><br><span class="line">evaluate_threshold(tpr_SGD, fpr_SGD, thresholds_SGD, <span class="number">0.2</span>), evaluate_threshold(tpr_SGD, fpr_SGD, thresholds_SGD, <span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Sensitivity: 0.47761194029850745
+Specificity: 0.64
+Sensitivity: 0.47761194029850745
+Specificity: 0.64
+
+
+
+
+
+(None, None)</code></pre>
+<p>AUC</p>
+<ul>
+<li>ROC-AUC 점수의 확률 론적 해석은 양성 사례와 음성 사례를 무작위로 선택하면 분류 자에 따라 양성 사례가 음성 사례보다 순위가 높을 확률이 AUC에 의해 제공된다는 것입니다. 여기서 순위는 예측값의 순서에 따라 결정됩니다.</li>
+<li>ROC-AUC 점수는 절대 값이 아닌 각 예측의 순위 만 고려하므로 분류를 위해 설정된 임계 값과 독립적입니다. 확률 출력의 경우 임계 값이 필요한 F1 점수의 경우에도 마찬가지입니다.</li>
+<li>AUC는 곡선 아래에있는 ROC 플롯의 백분율입니다.</li>
+<li>AUC는 양성 및 음성 클래스를 구별하는 모델의 능력을 나타냅니다. 1.0 영역은 모든 예측을 완벽하게 수행 한 모델을 나타냅니다. 0.5의 영역은 무작위로 좋은 모델을 나타냅니다.</li>
+<li>AUC는 높은 등급의 불균형이있는 경우에도 유용합니다 (분류 정확도와 달리).</li>
+<li>사기 사건<ul>
+<li>거의 99 %의 Null 정확도</li>
+<li>AUC는 여기에 유용합니다.</li>
+</ul>
+</li>
+</ul>
+<p>일반 AUC 예측 :</p>
+<ul>
+<li>90-1 = 우수</li>
+<li>80-.90 = 좋음</li>
+<li>70-.80 = 보통</li>
+<li>60-.70 = 나쁨</li>
+<li>50-.60 = 실패</li>
+</ul>
+<p>AUC ROC는 모델의 성능을 결정하기 위해 예측 된 확률을 고려합니다. 그러나 확률의 순서 만 고려하므로 양수일 가능성이 더 높은 샘플 (로그 손실)에 대해 더 높은 확률을 예측하는 모델의 기능은 고려하지 않습니다.</p>
+<p>AUC는 다양한 결정 임계 값이있는 이진 분류와 관련하여 계산되는 반면, 로그 손실은 실제로 분류의 “확실성”을 고려합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 중요 : 첫 번째 인수는 참 값이고 두 번째 인수는 예측 확률입니다.</span></span><br><span class="line"><span class="comment"># print (metrics.roc_auc_score (y_test, y_pred_prob))</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">roc_auc_logreg = cross_val_score(clf_logreg, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;roc_auc&#x27;</span>).mean()</span><br><span class="line">roc_auc_SGD = cross_val_score(clf_SGD, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;roc_auc&#x27;</span>).mean()</span><br><span class="line">roc_auc_rfc = cross_val_score(clf_rfc, X_train, y_train, cv = cv, scoring = <span class="string">&#x27;roc_auc&#x27;</span>).mean()</span><br><span class="line"></span><br><span class="line">roc_auc_logreg, roc_auc_SGD, roc_auc_rfc</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(0.8355808440018967, 0.5851354738196843, 0.8370852807694913)</code></pre>
+<p><strong>혼동 매트릭스</strong></p>
+<p>혼동 행렬은 N X N 행렬입니다. 여기서 N은 예측되는 클래스의 수입니다. Confusion Matrix는 행렬을 출력으로 제공하고 모델의 전체 성능을 설명합니다.</p>
+<p>올바른 예측은 행렬의 대각선에 있습니다.</p>
+<p>혼동 행렬의 4 가지 중요한 용어 :</p>
+<ul>
+<li>True Positives : 우리가 YES를 예측하고 실제 결과도 YES 인 경우.</li>
+<li>True Negatives : NO를 예측하고 실제 결과가 NO 인 경우.</li>
+<li>False Positives : YES를 예측하고 실제 결과가 NO 인 경우.</li>
+<li>False Negatives : 아니오를 예측하고 실제 결과가 YES 인 경우.</li>
+</ul>
+<p>혼동 매트릭스 자체는 성능 측정이 아니지만 거의 모든 성능 지표는 혼동 매트릭스와 그 안에있는 숫자를 기반으로합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logreg_matrix = metrics.confusion_matrix(y_train, y_pred_class_logreg)</span><br><span class="line">print(logreg_matrix)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[331  44]
+ [ 83 118]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SGD_matrix = metrics.confusion_matrix(y_train, y_pred_class_SGD)</span><br><span class="line">print(SGD_matrix)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[308  67]
+ [150  51]]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rfc_matrix = metrics.confusion_matrix(y_train, y_pred_class_rfc)</span><br><span class="line">print(rfc_matrix)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[320  55]
+ [ 73 128]]</code></pre>
+<p><strong>분류 보고서</strong></p>
+<p>classification_report () 함수는 각 클래스에 대한 정밀도, 재현율, f1 점수 및 지원을 표시합니다.</p>
+<p><strong>정도</strong></p>
+<p>분류자가 예측 한 긍정적 결과의 수로 나눈 참 양성 수입니다.</p>
+<p>$Precision =  \frac{True\ Positives}{True\ Positives + False\ Positives}$</p>
+<p><strong>리콜 / 감도</strong></p>
+<p>참 양성 수를 모든 관련 샘플 (양성으로 식별되어야하는 모든 샘플)의 수로 나눈 값입니다.</p>
+<p>$Recall =  \frac{True\ Positives}{True\ Positives + False\ Negatives}$</p>
+<ul>
+<li>False Negatives를 최소화하려면 Recall이 100 %에 가깝도록해야합니다.</li>
+<li>오탐을 최소화하려면 정밀도가 100 %에 가까워 야합니다.</li>
+</ul>
+<p><strong>특이성 / TNR (참 음성 비율)</strong></p>
+<p>올바르게 식별 된 실제 음성 사례의 비율입니다.<br>특이성은 Recall과 정반대입니다.<br>$Specificity =  \frac{True\ Negatives}{True\ Negatives + False\ Positives}$</p>
+<p><strong>F1 점수</strong></p>
+<ul>
+<li><p>F1 점수는 정밀도와 재현율 사이의 조화 평균입니다.</p>
+</li>
+<li><p>분류 기가 얼마나 정확한지 (올바르게 분류하는 인스턴스 수)와 견고 함 (많은 인스턴스를 놓치지 않음)을 알려줍니다.</p>
+</li>
+<li><p>F1 점수가 높을수록 모델의 성능이 더 좋습니다.</p>
+</li>
+<li><p>범위 [0, 1].</p>
+</li>
+</ul>
+<p>$F1 = 2 * \frac{1}{\frac{1}{precision} + \frac{1}{recall}}$</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p><a href="https://choichiwo.github.io/2020/12/02/pima_indians_diabetes/">https://choichiwo.github.io/2020/12/02/pima_indians_diabetes/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>choi</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-12-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2020-12-02</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/12/01/%EB%B6%88%EA%B7%A0%ED%98%95_%EB%B6%84%EB%A5%98%EC%97%90_%EB%8C%80%ED%95%9C_%ED%8F%89%EA%B0%80_%EC%A7%80%ED%91%9C/"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">14</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-02T02:29:26.590Z">2020-12-02</time></p><p class="title"><a href="/2020/12/02/pima_indians_diabetes/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-01T02:57:54.391Z">2020-12-01</time></p><p class="title"><a href="/2020/12/01/%EB%B6%88%EA%B7%A0%ED%98%95_%EB%B6%84%EB%A5%98%EC%97%90_%EB%8C%80%ED%95%9C_%ED%8F%89%EA%B0%80_%EC%A7%80%ED%91%9C/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-30T07:16:19.676Z">2020-11-30</time></p><p class="title"><a href="/2020/11/30/Seaborn_with_Matplotlib_1/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-21T15:00:00.000Z">2020-11-22</time></p><p class="title"><a href="/2020/11/22/Part03_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B6%84%EC%84%9D_2/">Part03. 데이터 분석_2</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-20T15:00:00.000Z">2020-11-21</time></p><p class="title"><a href="/2020/11/21/Part03_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B6%84%EC%84%9D_1/">Part03. 데이터 분석_1</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">December 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">November 2020</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">October 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/ADSP%EC%9E%90%EA%B2%A9%EC%A6%9D/"><span class="tag">ADSP자격증</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ADsP/"><span class="tag">ADsP</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D%EC%A4%80%EC%A0%84%EB%AC%B8%EA%B0%80/"><span class="tag">데이터분석준전문가</span><span class="tag">4</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Report" height="28"></a><p class="is-size-7"><span>&copy; 2020 choi</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
